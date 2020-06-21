@@ -204,6 +204,8 @@ var interfaceConfig = {
     */
     SHOW_CHROME_EXTENSION_BANNER: false,
 
+    SHOW_DOMINANT_SPEAKER_DISPLAY_NAME: false,
+
     /**
      * When enabled, the kick participant button will not be presented for users without a JWT
      */

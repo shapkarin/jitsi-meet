@@ -90,7 +90,9 @@ type Props = AbstractProps & {
     _showPrejoin: boolean,
 
     dispatch: Function,
-    t: Function
+    t: Function,
+
+    _dominantSpeakerName: string
 }
 
 /**
@@ -179,12 +181,14 @@ class Conference extends AbstractConference<Props, *> {
         const {
             // XXX The character casing of the name filmStripOnly utilized by
             // interfaceConfig is obsolete but legacy support is required.
-            filmStripOnly: filmstripOnly
+            filmStripOnly: filmstripOnly,
+            SHOW_DOMINANT_SPEAKER_DISPLAY_NAME
         } = interfaceConfig;
         const {
             _iAmRecorder,
             _layoutClassName,
-            _showPrejoin
+            _showPrejoin,
+            _dominantSpeakerName
         } = this.props;
         const hideLabels = filmstripOnly || _iAmRecorder;
 
@@ -212,6 +216,8 @@ class Conference extends AbstractConference<Props, *> {
                 <CalleeInfoContainer />
 
                 { !filmstripOnly && _showPrejoin && <Prejoin />}
+
+                { SHOW_DOMINANT_SPEAKER_DISPLAY_NAME && <div>{ _dominantSpeakerName }</div> }
             </div>
         );
     }
@@ -278,7 +284,8 @@ function _mapStateToProps(state) {
         _iAmRecorder: state['features/base/config'].iAmRecorder,
         _layoutClassName: LAYOUT_CLASSNAMES[getCurrentLayout(state)],
         _roomName: getConferenceNameForTitle(state),
-        _showPrejoin: isPrejoinPageVisible(state)
+        _showPrejoin: isPrejoinPageVisible(state),
+        _dominantSpeakerName: interfaceConfig.SHOW_DOMINANT_SPEAKER_DISPLAY_NAME ? state['features/base/participants'].find(({ dominantSpeaker }) => dominantSpeaker)?.name : ''
     };
 }
 

@@ -285,7 +285,8 @@ function _mapStateToProps(state) {
         _layoutClassName: LAYOUT_CLASSNAMES[getCurrentLayout(state)],
         _roomName: getConferenceNameForTitle(state),
         _showPrejoin: isPrejoinPageVisible(state),
-        _dominantSpeakerName: interfaceConfig.SHOW_DOMINANT_SPEAKER_DISPLAY_NAME ? state['features/base/participants'].find(({ dominantSpeaker }) => dominantSpeaker)?.name : ''
+        _dominantSpeakerName: interfaceConfig.SHOW_DOMINANT_SPEAKER_DISPLAY_NAME
+            ? state['features/base/participants'].find(({ dominantSpeaker }) => dominantSpeaker)?.name : ''
     };
 }
 

@@ -392,3 +392,17 @@ async function _getFirstLoadableAvatarUrl(participant) {
 
     return undefined;
 }
+
+/**
+ * Returns true if user is the moderator.
+ *
+ * @param {(Object)} stateful - The redux state features/base/participants.
+ * @param {string} id - The ID of the participant to check.
+ *
+ * @returns {boolean}
+ */
+export function isModerator(stateful: Object, id: string): Boolean {
+    const localParticipant = getParticipantById(stateful, id);
+
+    return localParticipant?.role === PARTICIPANT_ROLE.MODERATOR;
+}

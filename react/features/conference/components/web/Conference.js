@@ -7,7 +7,7 @@ import VideoLayout from '../../../../../modules/UI/videolayout/VideoLayout';
 import { getConferenceNameForTitle } from '../../../base/conference';
 import { connect, disconnect } from '../../../base/connection';
 import { translate } from '../../../base/i18n';
-import { getDominantSpeaker } from '../../../base/participants/functions';
+import { getDominantSpeaker } from '../../../base/participants';
 import { connect as reactReduxConnect } from '../../../base/redux';
 import { Chat } from '../../../chat';
 import { Filmstrip } from '../../../filmstrip';
@@ -286,8 +286,7 @@ function _mapStateToProps(state) {
         _layoutClassName: LAYOUT_CLASSNAMES[getCurrentLayout(state)],
         _roomName: getConferenceNameForTitle(state),
         _showPrejoin: isPrejoinPageVisible(state),
-        _dominantSpeakerName: interfaceConfig.SHOW_DOMINANT_SPEAKER_DISPLAY_NAME
-            ? getDominantSpeaker(state)?.name : ''
+        _dominantSpeakerName: getDominantSpeaker(state)?.name ?? ''
     };
 }
 
